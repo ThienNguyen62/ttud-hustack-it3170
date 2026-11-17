@@ -27,3 +27,34 @@ Output
 2
 5
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    stack<int> st;
+    string s;
+
+    while (cin >> s) {
+        if (s == "#") {
+            break;
+        }
+
+        if (s == "PUSH") {
+            int v;
+            cin >> v;
+            st.push(v);
+        }
+        else if (s == "POP") {
+            if (st.empty()) {
+                cout << "NULL" << '\n';
+            }
+            else {
+                cout << st.top() << '\n';
+                st.pop();
+            }
+        }
+    }
+
+    return 0;
+}
