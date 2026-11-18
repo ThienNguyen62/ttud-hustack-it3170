@@ -30,3 +30,85 @@ Output
 7
 2
 */
+
+
+/* nhập n và n phần tử của mảng
+sắp xếp mảng tăng dần bằng sort()
+đọc từng truy vấn next k và tìm phần tử bằng upper_bound()
+nếu tìm thấy , in giá trị đó, nếu không tìm thấy in -1
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main ()
+{
+    int n;
+    cin>>n;
+    vector<int>a(n); // mảng động vector
+    for (int i =0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    // sắp xếp tăng dần
+    sort(a.begin(),a.end());
+    string s;
+    while (cin>> s && s!="#")
+    {
+        int k;
+        cin>>k;
+        // tìm phần tử đầu tiên lớn hơn k
+        auto it = upper_bound(a.begin(),a.end(), k);  // auto gips c++ tự suy ra kiểu dữ liệu biến it
+        if (it == a.end())
+        {
+            cout<<-1<<'\n';
+        }
+        else{
+            cout<< *it<<'\n';
+        }
+    }
+    return 0;
+}
+
+
+
+// code trong trường hợp ko biết hàm sẵn
+/*
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int a[100005];
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    string s;
+
+    while (cin >> s && s != "#") {
+        int k;
+        cin >> k;
+
+        int ans = -1;
+
+        for (int i = 0; i < n; i++) {
+            if (a[i] > k) {
+                if (ans == -1 || a[i] < ans) {
+                    ans = a[i];
+                }
+            }
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
+}
+
+}
+*/
