@@ -39,3 +39,45 @@ Output
 NULL
 4
 */
+
+/*Cho một hàng đợi (Queue) ban đầu rỗng, chứa các số nguyên.
+
+Thực hiện lần lượt các lệnh sau:
+- PUSH v: Thêm số nguyên v vào cuối hàng đợi.
+- POP: Lấy phần tử ở đầu hàng đợi ra và in giá trị đó.
+- Nếu hàng đợi rỗng mà gặp lệnh POP, in NULL.
+- #: Kết thúc các lệnh (theo ví dụ đề bài).
+Yêu cầu: Mỗi lệnh POP phải in kết quả trên một dòng riêng.
+*/
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    queue<int> q;
+    string s;
+
+    while (cin >> s) {
+        if (s == "#") {
+            break;
+        }
+
+        if (s == "PUSH") {
+            int v;
+            cin >> v;
+            q.push(v);
+        }
+        else if (s == "POP") {
+            if (q.empty()) {
+                cout << "NULL" << '\n';
+            }
+            else {
+                cout << q.front() << '\n';
+                q.pop();
+            }
+        }
+    }
+
+    return 0;
+}
