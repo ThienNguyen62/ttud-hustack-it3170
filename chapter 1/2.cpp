@@ -27,7 +27,13 @@ Output
 2
 5
 */
-
+/*
+cho một ngăn xếp ban đầu rỗng, chứa các phần tử số nguyên
+thực hiền lần lượt các lệnh 
+push v thêm số nguyên v vào đỉnh ngăn xếp
+pop lấy phần tử ở đỉnh ngăn xếp ra và in phần tử đó, rỗng thì in null
+# kết thúc danh sách lệnh
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -58,3 +64,10 @@ int main() {
 
     return 0;
 }
+/*
+đọc lần lượt từng lệnh, gặp # thì break
+gặp push thì đọc thêm số v và gọi push
+gặp pop thì kiểm tra có st.empty không, rồi gọi top lấy giá trị đem in, sau đó pop để xóa
+
+thành thạo 4 thao tác push(),top(),pop(),empty()
+*/
