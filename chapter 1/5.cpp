@@ -103,3 +103,17 @@ lower_bound() trả về iterator trỏ tới phần tử đầu tiên lớn hơ
 uppper_bound() trả về phần tử đầu tiên lớn hơn hẳn value
 auto tự suy luận kiểu dữ liệu dựa vào kiểu thức bên phải
 */
+
+// giải thích pattern
+/*
+S= {2,3,4,5,9}
+min_greater_equal 10: không có số >= 10  NULL
+min_greater 7 số nhỏ nhất >7 là 9 -> 9
+min_greater_equal 7 số nhỏ nhất >=7 là 9
+min_greater_equal 4 là 4
+insert 5 5 đã tồn tại không in
+min_greater 8 nhỏ nhất >8 là 9
+min_greater 1 là 2
+min_greater_equal 6 nhỏ nhất >=6 là 9
+min_greater_equal 8 là 9
+*/
