@@ -42,3 +42,49 @@ NULL
 9
 9
 */
+/*
+Đọc n số nguyên ban đầu để tạo tập hợp S, rồi xử lý các lệnh cho đến khi gặp #.
+Với min_greater_equal v, tìm phần tử nhỏ nhất trong S lớn hơn hoặc bằng v.
+Với min_greater v, tìm phần tử nhỏ nhất trong S lớn hơn v.
+In kết quả của mỗi truy vấn trên một dòng, hoặc NULL nếu không tìm thấy.
+Lệnh insert v thêm v vào S và remove v xóa v khỏi S. Hai lệnh này không in kết quả.
+*/
+
+#include <iostream>
+#include <set>
+#include <string>
+
+int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int n;
+    if (!(std::cin >> n)) {
+        return 0;
+    }
+
+    std::set<long long> values;
+    long long value;
+    for (int i = 0; i < n; ++i) {
+        std::cin >> value;
+        values.insert(value);
+    }
+
+    std::string operation;
+    while (std::cin >> operation && operation != "#" && std::cin >> value) {
+        if (operation == "insert") {
+            values.insert(value);
+        } else if (operation == "remove") {
+            values.erase(value);
+        } else {
+            const auto result = operation == "min_greater_equal"
+                                    ? values.lower_bound(value)
+                                    : values.upper_bound(value);
+            if (result == values.end()) {
+                std::cout << "NULL\n";
+            } else {
+                std::cout << *result << '\n';
+            }
+        }
+    }
+}
