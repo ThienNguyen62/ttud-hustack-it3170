@@ -55,28 +55,32 @@ Lệnh insert v thêm v vào S và remove v xóa v khỏi S. Hai lệnh này kh�
 #include <string>
 
 int main() {
+    // tăng tốc nhập suất
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-
+    // nhập giá trị
     int n;
     if (!(std::cin >> n)) {
         return 0;
     }
-
+    // khởi tạo tập hợp
     std::set<long long> values;
     long long value;
     for (int i = 0; i < n; ++i) {
         std::cin >> value;
         values.insert(value);
     }
-
+    // đọc tên thao tác
     std::string operation;
     while (std::cin >> operation && operation != "#" && std::cin >> value) {
         if (operation == "insert") {
             values.insert(value);
         } else if (operation == "remove") {
             values.erase(value);
-        } else {
+        } 
+        else 
+        // phân tích tìm kiếm
+        {
             const auto result = operation == "min_greater_equal"
                                     ? values.lower_bound(value)
                                     : values.upper_bound(value);
@@ -88,3 +92,14 @@ int main() {
         }
     }
 }
+
+/*
+phần phân tích tìm kiếm sử dụng cả toán tử ba ngôi, suy lận auto và lower_bound() và upper_bound của set
+cú pháp toán tử 3 ngôi
+condition ? expression_if_true : expression_if_false;
+nếu là min_greater_equal thì dùng lower_bound ngược lại dùng upper_bound
+
+lower_bound() trả về iterator trỏ tới phần tử đầu tiên lớn hơn hoặc bằng calue
+uppper_bound() trả về phần tử đầu tiên lớn hơn hẳn value
+auto tự suy luận kiểu dữ liệu dựa vào kiểu thức bên phải
+*/
