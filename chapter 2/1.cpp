@@ -87,10 +87,11 @@ nhìn 2 tổng đã lưu
 prefix[5] = 5 + 8 + 7 + 1 + 9 = 30
 prefix[2] = 5 + 8             = 13
 sum = prefix [5] - prefix[2]
-=tổng [j] - tổng [i-1]
 
+công thức cần nhớ
+prefix[i] = prefix [i-1] +a[i]
 sum = prefix[right] - prefix[left-1]
-left -1 là muốn bỏ những phần tử đứng trước left không bao gồm left
+(left -1) là muốn bỏ những phần tử đứng trước left không bao gồm left
 
 trong code có đoạn prefix(n+1) do dòng 2 input bắt nhập các giá trị từ i =1, vậy với n là số phần tử thì mảng phải có n+1 khoảng trống (bao gồm vị trí 0)
 */
