@@ -35,6 +35,9 @@ Output
 Mỗi xe được dùng phải xuất phát từ kho 0 rồi quay về kho. Mỗi khách được phục vụ
 đúng một lần, tổng nhu cầu trên mỗi xe không quá Q và có thể để xe trống.
 In tổng quãng đường nhỏ nhất.
+
+nhiệm vụ của bạn là quyết định xe nào giao cho khách nào, và xe đi theo thứ tự nào để tổng
+quãng đường của tất cả xe là ngắn nhất
 */
 
 #include <algorithm>
@@ -115,3 +118,58 @@ int main() {
 
     std::cout << (best.back() == inf ? -1 : best.back()) << '\n';
 }
+
+
+/*giải thích input output
+4 2 15
+7 7 11 2
+0 12 12 11 14
+14 0 11 14 14
+14 10 0 11 12
+10 14 12 0 13
+10 13 14 11 0
+
+n = 4   → Có 4 khách hàng
+K = 2   → Có 2 xe tải
+Q = 15  → Mỗi xe chở tối đa 15 thùng
+dòng 2
+Khách 1: 7 thùng
+Khách 2: 7 thùng
+Khách 3: 11 thùng
+Khách 4: 2 thùng
+bảng khoảng cách
+
+Đi từ ↓ / Đến →	Kho 0	Khách 1	Khách 2	Khách 3	Khách 4
+Kho 0	                    0	12	12	11	14
+Khách 1	                    14	0	11	14	14
+Khách 2                  	14	10	0	11	12
+Khách 3	                    10	14	12	0	13
+Khách 4	                    10	13	14	11	0
+
+những điều kiện cần tuần thủ
+mỗi xe được giao đúng 1 lần
+không xe nào vượt tải trọng
+một khách không thể hai xe cùng giao
+không được bỏ qua khách
+xe xuất phát và quay về kho
+không bắt buộc dùng tất cả xe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

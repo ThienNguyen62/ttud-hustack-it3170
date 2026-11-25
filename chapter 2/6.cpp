@@ -62,6 +62,7 @@ int main() {
         left += n;
         right += n + 1;
         int minimum = std::numeric_limits<int>::max();
+        // nút chẵn con trái, nút lẻ con phải
         while (left < right) {
             if (left % 2 == 1) {
                 minimum = std::min(minimum, tree[left++]);
@@ -76,3 +77,38 @@ int main() {
     }
     std::cout << total << '\n';
 }
+
+/*
+cách 1: duyệt trực tiếp từng đoạn
+vd
+a = [5, 2, 8, 1, 7, 3]
+i = 1
+j = 4
+tìm min
+int minimum = INT_MAX;
+
+for (int k = i; k <= j; k++) {
+    minimum = min(minimum, a[k]);
+}
+Mảng không thay đổi. Tại sao mỗi truy vấn lại phải tìm giá trị nhỏ nhất từ đầu? 
+Có thể tính trước giá trị nhỏ nhất của những đoạn nhỏ rồi ghép chúng lại không?   
+
+Giá trị nhỏ nhất của một đoạn lớn bằng min của hai đoạn nhỏ tạo thành nó.
+vd
+a = [5, 2, 8, 1, 7, 3]
+Đoạn trái: [5, 2, 8] → min = 2
+Đoạn phải: [1, 7, 3] → min = 1
+đây là ý tưởng của segment tree
+là cấu trúc chua mảng thành nhiều đoạn nhỏ, lưu thông tin tổng hợp của từng đoạn
+
+trong chương trình có điểm đặc biệt, thay vì tạo cây bằng đệ quy, lưu cây bằng vector
+
+nhớ con trái = 2i
+con phải = 2i +1
+cha = [i/2]
+
+
+
+
+
+*/
