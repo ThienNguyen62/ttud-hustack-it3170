@@ -41,10 +41,10 @@ int main() {
     int n, limit;
     std::cin >> n >> limit;
     std::vector<int> values(n);
-
+    // right, left là chỉ sô index
     int left = 0;
     int sum = 0;
-    int best = 0;
+    int best = 0; // độ dài lớn nhất
     for (int right = 0; right < n; ++right) {
         std::cin >> values[right];
         sum += values[right];
