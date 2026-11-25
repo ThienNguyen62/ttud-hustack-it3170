@@ -1,56 +1,17 @@
 /*
- Range Minimum Query
+Range Minimum Query
 Khó
-Given a sequence of n integers a
-0
-,. . .,a
-n-1
-. We denote rmq(i,j) the minimum element of the sequence a
-i
-, a
-i+1
-, . . .,a
-j
-. Given m pairs (i
-1
-, j
-1
-),. . .,(i
-m
-, j
-m
-), compute the sum Q = rmq(i
-1
-,j
-1
-) + . . . + rmq(i
-m
-, j
-m
-)
+Given a sequence of n integers a[0], ..., a[n - 1].
+Let rmq(i, j) be the minimum of a[i], a[i + 1], ..., a[j].
+Given m pairs (i[1], j[1]), ..., (i[m], j[m]), compute the sum
+Q = rmq(i[1], j[1]) + ... + rmq(i[m], j[m]).
+
 Input
-Line 1: n (1 <=  n <= 10
-6
-)
-Line 2: a
-0
-, . . . ,a
-n-1
- ( 1  <=  ai <= 10
-6
-)
-line 3: m (1  <= m <= 10
-6
-)
-Line k+3 (k=1, . . ., m): i
-k
-, j
-k 
- (0  <=  i
-k
- < j
-k
- < n)
+Line 1: contains n (1 <= n <= 10^6).
+Line 2: contains a[0], ..., a[n - 1] (1 <= a[i] <= 10^6).
+Line 3: contains m (1 <= m <= 10^6).
+Line k + 3 (k = 1, ..., m): contains i[k] and j[k] (0 <= i[k] < j[k] < n).
+
 Output
 Write the value Q
 Example

@@ -2,36 +2,17 @@
 Segment Tree Simulation - query Max
 Khó
 SEGMENT_TREE
-Given a sequence of positive integers a
-1
-, a
-2
-, . . ., a
-n
-. Perform a sequence of actions of following types:
-update  i  v : assign a
-i
- = v
-get-max  i  j : return the maximum value of the subsequence a
-i
-, a
-i
-+1
-, . . ., aj
+Given a sequence of positive integers a[1], a[2], ..., a[n].
+Perform a sequence of actions of the following types:
+update i v: assign a[i] = v.
+get-max i j: return the maximum of a[i], a[i + 1], ..., a[j].
 
 Input
-Line 1: contains a positive integer n (1 <= n <= 100000)
-Line 2: contains a
-1
-, a
-2
-, . . ., a
-n
-. (1 <= a
-i
- <= 10000)
-Line 3: contains a positive integer m (1 <= m <= 100000) which is the number of actions
-Line i + 3 (i = 1, 2, . . ., m): contains an action described above
+Line 1: contains a positive integer n (1 <= n <= 100000).
+Line 2: contains a[1], a[2], ..., a[n] (1 <= a[i] <= 10000).
+Line 3: contains a positive integer m (1 <= m <= 100000), the number of actions.
+Line i + 3 (i = 1, ..., m): contains an action described above.
+
 Output
 Write in each line the result of the corresponding action of type get-max
 Example
@@ -45,7 +26,7 @@ get-max 3 8
 update 9 20
 get-max 4 10
 
-Ouput
+Output
 4
 8
 9

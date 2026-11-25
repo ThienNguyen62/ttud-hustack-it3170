@@ -2,33 +2,16 @@
 Longest Bounded SubSequence
 Khó
 TWO_POINTERS
-Given a sequence of positive integers a = a
-1
-, a
-2
-, . . ., a
-n
-. A subsequence of a is defined to be a sequence of consecutive elements a
-i
-, a
-i+1
-, . . ., a
-j 
-(1 <= i <= j <= n). The weight of a subsequence is the sum of its elements. Given a positive integer Q. A subsequence is said to be feasible if the weight is less than or equal to Q.
-Find a feasible subsequence such that the number of elements of that subsequence is maximal.
+Given a sequence of positive integers a[1], a[2], ..., a[n].
+A subsequence here consists of consecutive elements a[i], a[i + 1], ..., a[j]
+(1 <= i <= j <= n). Its weight is the sum of its elements.
+Given a positive integer Q, find the longest such subsequence with weight
+less than or equal to Q.
+
 Input
-Line 1: contains two positive integers n and Q (1 <= n <= 10
-6
-, 1 <= Q <= 100000)
-Line 2: contains a
-1
-, a
-2
-, . . ., a
-n
- (1 <= a
-i
- <= 10000).
+Line 1: contains two positive integers n and Q (1 <= n <= 10^6, 1 <= Q <= 100000).
+Line 2: contains a[1], a[2], ..., a[n] (1 <= a[i] <= 10000).
+
 Output
 Write the number of elements of the subsequence found, or write -1 if no such subsequence exists.
 Example
