@@ -26,6 +26,8 @@ Output
 /*
 Đọc dãy n số nguyên dương và giới hạn Q. In độ dài lớn nhất của đoạn
 liên tiếp có tổng không vượt quá Q. In -1 nếu không có đoạn nào thỏa mãn.
+đề bài dùng subsequence, định nghĩa là các phần tử liên tiếp , vì vậy bản chất là bài đoạn con liên tiếp
+không được chọn rời rạc
 */
 
 #include <algorithm>
@@ -47,9 +49,44 @@ int main() {
         std::cin >> values[right];
         sum += values[right];
         while (sum > limit) {
-            sum -= values[left++];
+            sum -= values[left++]; // xóa đầu , cửa sổ cũ chuyển sang vị trí tiếp theo
         }
         best = std::max(best, right - left + 1);
     }
     std::cout << (best == 0 ? -1 : best) << '\n';
 }
+
+
+/*
+cách làm đơn giản nhất 
+vd
+a = [4, 2, 3, 5, 1]
+Q = 8
+tìm đoạn liên tiếp dài nhất có tổng <= 8
+int best = 0;
+
+for (int i = 0; i < n; i++) {
+    int sum = 0;
+
+    for (int j = i; j < n; j++) {
+        sum += a[j];
+
+        if (sum <= Q) {
+            best = max(best, j - i + 1);
+        }
+    }
+}
+đoạn code thử tất cả các đoạn có thể bắt đầu ở vị trí i và kết thúc ở J, với i <=j
+mỗi khi đoạn hợp lệ, cập nhật độ dài lớn nhất
+nhược điểm
+số lượt xét quá lớn, tại sao mỗi lần chuyển vị trí bắt đầu, ta lại phải cộng lại những phẩn tử đã xử lí
+đây là công việc lặp cần loại bỏ
+
+thay vì mỗi lần bắt đầu lại từ đầu, tưởng tượng ta có một cửa số bao quanh một đoạn của mảng với leeft là vị trí bắt đầu
+còn right là vị trí kết thúc
+nếu tổng vượt quá thì bỏ bớt phần tử ở đầu bên trái, thay vì xóa toàn bộ đoạn và bắt đầu tính lại
+
+
++ quy tắc: mở rộng cửa sổ sang phải, nếu tổng vượt Q, thu hẹp cửa sổ từ bên trái cho đến khi tổng hợp lệ ( chỉ áp dụng cho số dương)
+length = right - left + 1
+*/
