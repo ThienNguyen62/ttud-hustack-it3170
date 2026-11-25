@@ -3,7 +3,8 @@ Sum pair of sequence equal to a number
 Trung bình
 TWO_POINTERS
 DIVIDE_CONQUER
-Cho dãy a1, a2, ..., an trong đó các phần tử đôi một khác nhau và 1 giá trị nguyên dương M. Hãy đếm số Q các cặp (i,j) sao cho 1 <= i < j <= n và ai + aj = M.
+Cho dãy a1, a2, ..., an trong đó các phần tử đôi một khác nhau và 1 giá trị nguyên dương M. 
+Hãy đếm số Q các cặp (i,j) sao cho 1 <= i < j <= n và ai + aj = M.
 
 Dữ liệu
 Dòng 1: ghi n và M (1 <= n, M <= 1000000)
@@ -19,43 +20,85 @@ Kết quả
 */
 
 /*
-Đọc n số nguyên đôi một khác nhau và số M.
-In số cặp chỉ số i < j sao cho tổng của hai phần tử bằng M.
+Đọc n số nguyên đôi một khác nhau và số nguyên dương M.
+In số cặp chỉ số i < j sao cho thỏa mãn đồng thời hai điều kiện
+ 1<=i<=j<=n
+ a[i]+a[j] =M .
 */
 
-#include <algorithm>
-#include <iostream>
-#include <vector>
+
+#include <bits/stdc++.h>
+using namespace std;
 
 int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int n;
-    long long target;
-    std::cin >> n >> target;
-    std::vector<long long> values(n);
-    for (auto& value : values) {
-        std::cin >> value;
-    }
-    std::sort(values.begin(), values.end());
+    long long M;
+    cin >> n >> M;
 
-    int pairs = 0;
+    vector<long long> a(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    sort(a.begin(), a.end());
+
     int left = 0;
     int right = n - 1;
+    int count = 0;
+
     while (left < right) {
-        const long long low = values[left];
-        const long long high = values[right];
-        // Nếu cả hai đều không dương, tổng không thể bằng M dương.
-        if (high <= 0 || low < target - high) {
-            ++left;
-        } else if (low > target - high) {
-            --right;
-        } else {
-            ++pairs;
-            ++left;
-            --right;
+        long long sum = a[left] + a[right];
+
+        if (sum < M) {
+            left++;
+        }
+        else if (sum > M) {
+            right--;
+        }
+        else {
+            count++;
+            left++;
+            right--;
         }
     }
-    std::cout << pairs << '\n';
+
+    cout << count << '\n';
+
+    return 0;
 }
+
+
+
+/*
+cách 1 brute force thử tất cả các cặp
+vd
+a = [5, 2, 1, 4, 3]
+M = 6
+chọn số đầu rồi cộng thử từng số đứng sau
+từ tư duy đó ta có 
+int count = 0;
+
+for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+        if (a[i] + a[j] == M) {
+            count++;
+        }
+    }
+}
+nhược điểm
+n phần tử số cặp cần kiểm tra là n(n-1)/2
+n =10^6 thì số cặp gần 500 tỷ
+
+tư duy two pointer. sau khi sort thì số nhỏ nhất bên trái, số lớn nhất bên phải
+đặt hai con trỏ left và right
+nếu tổng không bằng M , phải di chuyển con trỏ nào
+TH1 tổng nhỏ hơn M thì ta phải tăng tổng, loại left cũ left ++
+TH2 tổng lớn hơn M thì ta phải giảm tổng, loại right cũ, right --
+nếu tổng bằng thì di chuyển cả 2 con trỏ tìm cặp khác
+left ++
+right --
+count++*/
