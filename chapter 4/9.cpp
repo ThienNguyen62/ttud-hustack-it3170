@@ -24,3 +24,43 @@ Input
 Output
 24
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, timeLimit, maxGap;
+    cin >> n >> timeLimit >> maxGap;
+    vector<int> goods(n), pickupTime(n);
+    for (int& value : goods) {
+        cin >> value;
+    }
+    for (int& value : pickupTime) {
+        cin >> value;
+    }
+
+    // dp[i][t] stores the best route ending at i with exactly t pickup time.
+    vector<vector<int>> dp(n, vector<int>(timeLimit + 1, -1));
+    int answer = 0;
+    for (int i = 0; i < n; ++i) {
+        if (pickupTime[i] > timeLimit) {
+            continue;
+        }
+        dp[i][pickupTime[i]] = goods[i];
+        answer = max(answer, goods[i]);
+        for (int previous = max(0, i - maxGap); previous < i; ++previous) {
+            for (int time = pickupTime[i]; time <= timeLimit; ++time) {
+                const int before = dp[previous][time - pickupTime[i]];
+                if (before >= 0) {
+                    dp[i][time] = max(dp[i][time], before + goods[i]);
+                    answer = max(answer, dp[i][time]);
+                }
+            }
+        }
+    }
+
+    cout << answer << '\n';
+}

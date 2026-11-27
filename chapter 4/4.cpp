@@ -24,3 +24,51 @@ output
 
 Explain: Jonh can put his 3 cows in the stalls at positions 1, 4 and 8, resulting in a minimum distance of 3.
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool canSelect(const vector<long long>& positions, int required, long long gap) {
+    int selected = 1;
+    long long last = positions.front();
+    for (size_t i = 1; i < positions.size() && selected < required; ++i) {
+        if (positions[i] - last >= gap) {
+            last = positions[i];
+            ++selected;
+        }
+    }
+    return selected >= required;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int tests;
+    cin >> tests;
+    while (tests--) {
+        int n, required;
+        cin >> n >> required;
+        vector<long long> positions(n);
+        for (long long& position : positions) {
+            cin >> position;
+        }
+        sort(positions.begin(), positions.end());
+
+        if (required <= 1) {
+            cout << 0 << '\n';
+            continue;
+        }
+        long long low = 0;
+        long long high = (positions.back() - positions.front()) / (required - 1);
+        while (low < high) {
+            const long long mid = low + (high - low + 1) / 2;
+            if (canSelect(positions, required, mid)) {
+                low = mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+        cout << low << '\n';
+    }
+}

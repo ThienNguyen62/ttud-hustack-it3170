@@ -18,3 +18,30 @@ Input
 Output
 4
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int days, minWork, maxWork;
+    cin >> days >> minWork >> maxWork;
+    const int mod = 1000000007;
+    vector<int> work(days + 1), rest(days + 1);
+    rest[0] = 1;  // Allows a work period to start on day 1.
+
+    for (int day = 1; day <= days; ++day) {
+        rest[day] = (day == 1) ? 1 : work[day - 1];
+        for (int length = minWork; length <= maxWork && length <= day; ++length) {
+            work[day] = (work[day] + rest[day - length]) % mod;
+        }
+    }
+
+    int answer = (work[days] + rest[days]) % mod;
+    if (minWork <= days && days <= maxWork) {
+        answer = (answer + mod - 1) % mod;  // At least one day off is required.
+    }
+    cout << answer << '\n';
+}

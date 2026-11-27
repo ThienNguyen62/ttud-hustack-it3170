@@ -27,3 +27,27 @@ Job 4 starts at time-point 0 and finishes at time-point 9
 Job 5 starts at time-point 4 and finishes at time-point 5
 
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    vector<long long> duration(n);
+    for (long long& time : duration) {
+        cin >> time;
+    }
+
+    // Starting longer jobs first minimizes the latest finish.
+    sort(duration.rbegin(), duration.rend());
+    long long completion = 0;
+    for (int start = 0; start < n; ++start) {
+        completion = max(completion, start + duration[start]);
+    }
+
+    cout << completion << '\n';
+}

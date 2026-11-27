@@ -17,3 +17,37 @@ Input
 Output
 6
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    const int maxValue = 1000000;
+    const int mod = 1000000007;
+    vector<int> fenwick(maxValue + 2);
+    long long inversions = 0;
+
+    for (int i = 0; i < n; ++i) {
+        int value;
+        cin >> value;
+        const int index = value + 1;
+
+        // Count earlier values <= value. Equal values are not inversions.
+        int notGreater = 0;
+        for (int p = index; p > 0; p -= p & -p) {
+            notGreater += fenwick[p];
+        }
+        inversions += i - notGreater;
+
+        for (int p = index; p <= maxValue + 1; p += p & -p) {
+            ++fenwick[p];
+        }
+    }
+
+    cout << inversions % mod << '\n';
+}

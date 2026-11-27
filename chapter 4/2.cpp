@@ -24,3 +24,42 @@ Input
 Output
 300
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int findSlot(vector<int>& parent, int slot) {
+    while (parent[slot] != slot) {
+        parent[slot] = parent[parent[slot]];
+        slot = parent[slot];
+    }
+    return slot;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    vector<pair<int, int>> jobs(n);
+    for (auto& [profit, deadline] : jobs) {
+        cin >> deadline >> profit;
+    }
+    sort(jobs.rbegin(), jobs.rend());
+
+    vector<int> parent(n + 1);
+    iota(parent.begin(), parent.end(), 0);
+
+    long long totalProfit = 0;
+    for (const auto& [profit, deadline] : jobs) {
+        // Use the latest available slot to leave earlier slots free.
+        const int slot = findSlot(parent, min(n, deadline));
+        if (slot > 0) {
+            totalProfit += profit;
+            parent[slot] = findSlot(parent, slot - 1);
+        }
+    }
+
+    cout << totalProfit << '\n';
+}
