@@ -1,5 +1,6 @@
 /*Cut Material
 Khó
+backtracking + bitmask + pruning
 Given a material having the shape rectangle with height H and width W. We need to cut this material into n smaller rectangle submaterials of size (h1,w1), (h2, w2), ..., (hn, wn). Write a program to check if we can perform this cut.
 Input
 Line 1: contains two positive integers H, W (1 <= H, W <= 10)
@@ -96,3 +97,20 @@ int main() {
     std::array<int, 10> occupied{};
     std::cout << canPack(height, width, pieces, occupied, 0) << '\n';
 }
+/*
+Bố trí n hình chữ nhật
+Bài toán tìm kiếm tổ hợp
+|
+Thử từng vị trí và hướng xoay
+Brute Force
+|
+Loại ngay cách đặt không hợp lệ
+Backtracking
+|
+Đặt hình lớn trước, kiểm tra diện tích
+Pruning và heuristic
+|
+Dùng bit để kiểm tra cả hàng
+Backtracking + Bitmask
+
+*/
